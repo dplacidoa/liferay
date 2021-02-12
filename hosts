@@ -1,0 +1,7 @@
+[web]
+#Maquina local
+#192.168.137.112
+
+#IP publica de EC2 para Liferay
+18.216.188.139
+

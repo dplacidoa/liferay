@@ -1,0 +1,51 @@
+---
+# tasks file for liferaydxp
+
+#Create user of S.O.
+#- name: create user
+#  user:
+#    name: liferay
+#    uid: 4000
+#    state: present
+#Installer packages
+- name: install packages
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - unzip
+    - java 
+    - vim
+    - yum-utils
+#Add repo de docker
+- name: Add repo docker
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+#Install Docker
+- name: Install docker
+  yum:
+    name: docker-ce
+    state: latest
+#Start and enable Docker
+- name: Start and enable Docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+#Install Docker-compose
+- name: Install Docker-compose
+  command: "{{ item }}"
+  args:
+    chdir: $path 
+  environment:
+    path: /home/ec2-user
+  loop:
+    - curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    - chmod +x /usr/local/bin/docker-compose
+    - docker-compose --version
+  register: command_output
+  #Create user Docker
+  - name: Create user Docker
+    user:
+      name: liferay
+      group: docker,wheel
+      append: yes
