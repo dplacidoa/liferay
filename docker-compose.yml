@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  liferay-tomcat-1:
+    build: ./liferay-tomcat #Create own imagen with Dockerfile
+    container_name: liferay-tomcat-1
+    depends_on:
+#       - apacheds
+#       - elasticsearch
+      - mysql
+    networks: 
+      - network-liferay-tomcat
+    ports: 
+      - 8081:8080
+      - 127.0.0.1:11311:11311
+    volumes:
+      - volume-liferay-tomcat-data:/opt/liferay/[liferay-version]/data
+      - volume-liferay-tomcat-1-work:/opt/liferay/[liferay-version]/work
+  mysql:
+    build: ./mysql #Create own imagen with Dockerfile
+    container_name: mysql
+    networks: 
+      - network-liferay-tomcat
+    ports: 
+      - 3306:3306
+    environment: 
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - volume-mysql:/var/lib/mysql
+networks:
+  network-liferay-tomcat
+volumes:
+  volume-liferay-tomcat-data
+  volume-liferay-tomcat-1-work
