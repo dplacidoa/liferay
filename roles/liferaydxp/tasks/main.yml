@@ -1,6 +1,6 @@
 ---
 # tasks file for liferaydxp
-#Installer packages...
+#Installer packages
 - name: install packages
   yum:
     name: "{{ item }}"
