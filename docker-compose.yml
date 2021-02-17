@@ -1,9 +1,15 @@
 version: "3.7"
 services:
   liferay-tomcat-1:
+<<<<<<< HEAD
     build: ./liferay-tomcat #Create own imagen with Dockerfile
     container_name: liferay-tomcat-1
     depends_on:
+=======
+    build: ./liferay-tomcat #Create own imagen with Dockerfile ...
+    container_name: liferay-tomcat-1
+    depends_on: # Specific that service start before ...
+>>>>>>> 7b859e7... up files
 #       - apacheds
 #       - elasticsearch
       - mysql
@@ -15,7 +21,11 @@ services:
     volumes:
       - volume-liferay-tomcat-data:/opt/liferay/[liferay-version]/data
       - volume-liferay-tomcat-1-work:/opt/liferay/[liferay-version]/work
+<<<<<<< HEAD
   mysql:
+=======
+  mysql_dev:
+>>>>>>> 7b859e7... up files
     build: ./mysql #Create own imagen with Dockerfile
     container_name: mysql
     networks: 
