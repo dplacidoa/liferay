@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-./bundles/*
-=======
+
 /bundles
 #liferay-ce-portal-tomcat-7.3.5-ga6-20200930172312275.tar.gz
 #mysql-connector-java-8.0.23.jar
->>>>>>> 7b859e7... up files
+
